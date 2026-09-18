@@ -1,0 +1,71 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>Bolt Color</title><script src="/sdk.js"></script><style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 50% -10%,#7054e8 0,#30245f 38%,#14162d 100%);color:#fff;min-height:100vh;display:flex;justify-content:center}.app{width:min(100%,520px);padding:16px 14px 30px}.top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.badge{background:#ffffff16;border:1px solid #ffffff26;backdrop-filter:blur(10px);padding:9px 8px;border-radius:15px;text-align:center;font-size:14px}.card{margin-top:13px;background:linear-gradient(180deg,#ffffff15,#ffffff09);border:1px solid #ffffff22;border-radius:28px;padding:17px 12px;box-shadow:0 22px 70px #0007}.title{text-align:center;font-size:28px;font-weight:900;letter-spacing:-1px}.sub{text-align:center;opacity:.72;font-size:13px}.progress{height:8px;background:#0003;border-radius:99px;margin:14px 16px 2px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#67f0c2,#f7d35d);border-radius:99px}.board{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 12px;margin:27px 0 20px}.bolt{width:66px;height:190px;position:relative;cursor:pointer;transition:.18s;padding-top:12px}.bolt.sel{transform:translateY(-12px)}.rod{position:absolute;width:15px;height:151px;left:25px;bottom:9px;border-radius:9px;background:linear-gradient(90deg,#777,#eee 40%,#999 72%,#555);box-shadow:0 2px 5px #0008}.base{position:absolute;width:48px;height:17px;left:9px;bottom:0;border-radius:5px 5px 10px 10px;background:linear-gradient(#ddd,#777);box-shadow:0 4px 7px #0007}.stack{position:absolute;left:7px;bottom:22px;width:52px;height:140px;display:flex;flex-direction:column-reverse;gap:3px;z-index:2}.nut{height:30px;border-radius:8px;clip-path:polygon(12% 0,88% 0,100% 24%,100% 76%,88% 100%,12% 100%,0 76%,0 24%);border:2px solid #0002;box-shadow:inset 0 6px 7px #fff5,inset 0 -7px 8px #0005,0 3px 5px #0005;animation:drop .16s ease}.nut:after{content:"";display:block;width:17px;height:10px;margin:8px auto;border-radius:4px;background:#25243b88;box-shadow:inset 0 2px 3px #0008}.c0{background:#ff5470}.c1{background:#ffd34e}.c2{background:#44dfb4}.c3{background:#5b9cff}.c4{background:#b873ff}.c5{background:#ff963d}@keyframes drop{from{transform:translateY(-10px);opacity:.4}}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.actions button,.big{border:0;border-radius:16px;padding:12px 7px;font-weight:800;font-size:14px;background:#fff;color:#24233c;box-shadow:0 5px 14px #0004}.actions button.secondary{background:#ffffff15;color:white;border:1px solid #ffffff25}.msg{text-align:center;min-height:26px;font-weight:800;margin:4px}.win{color:#8dffcb}.panel{display:flex;gap:8px;margin-top:10px}.panel button{flex:1}.big{background:linear-gradient(180deg,#ffe36c,#ffb833)}.daily{background:#ffffff10!important;color:white!important;border:1px solid #ffffff25!important}.levelmap{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}.levelmap button{border:0;border-radius:12px;padding:10px 3px;font-weight:800;background:#ffffff12;color:white}.levelmap button.done{background:#ffffff25}.levelmap button.now{background:#ffe36c;color:#29233f}.footer{text-align:center;font-size:11px;opacity:.45;margin-top:13px}.modal{position:fixed;inset:0;background:#080a18d9;display:none;align-items:center;justify-content:center;padding:22px;z-index:10}.modal.show{display:flex}.modalbox{width:min(100%,400px);background:#27254b;border:1px solid #ffffff25;border-radius:25px;padding:24px;text-align:center;box-shadow:0 25px 80px #000}.modalbox h2{margin:0 0 7px}.reward{font-size:48px;margin:12px}.modalbox button{width:100%;margin-top:10px}.adnote{font-size:11px;opacity:.55;margin-top:8px}
+.gear{position:fixed;right:14px;top:14px;z-index:8;border:1px solid #ffffff28;background:#ffffff18;color:#fff;border-radius:14px;width:42px;height:42px;font-size:20px}
+.tutorial{margin:10px 4px 0;padding:10px 12px;border-radius:15px;background:#67f0c21a;border:1px solid #67f0c244;font-size:13px;line-height:1.35}
+.settingrow{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #ffffff18}
+.settingrow button{width:auto;margin:0;padding:9px 14px;border:0;border-radius:12px;font-weight:800}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}.confetti i{position:absolute;top:-20px;font-style:normal;animation:fall 1.6s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.2}}
+</style></head><body><button class="gear" onclick="openSettings()">⚙️</button><div id="confetti" class="confetti"></div><div class="app"><div class="top"><div class="badge">💎 <b id="coins">100</b></div><div class="badge">Уровень <b id="level">1</b></div><div class="badge">🔥 <b id="streak">1</b></div></div><div class="card"><div class="title">🔩 BOLT COLOR</div><div class="sub">Собери все гайки одного цвета на одном болте</div><div class="progress"><i id="prog"></i></div><div id="msg" class="msg"></div><div id="tutorial" class="tutorial" style="display:none"></div><div id="board" class="board"></div><div class="actions"><button class="secondary" onclick="undo()">↩ Отмена</button><button onclick="hint()">💡 Подсказка<br><small>10 💎</small></button><button class="secondary" onclick="restart()">⟳ Заново</button></div><div class="panel"><button class="big" onclick="rewardAd()">🎁 +30 💎<br><small>за рекламу</small></button><button class="big daily" onclick="daily()">📅 Награда дня</button></div></div><div class="card"><div class="sub">Карта уровней</div><div id="levelmap" class="levelmap"></div></div><div class="footer">Bolt Color v0.4 • 100 уровней • публикационная подготовка</div></div><div id="settings" class="modal"><div class="modalbox"><h2>⚙️ Настройки</h2>
+<div class="settingrow"><span>🔊 Звук</span><button id="soundBtn" onclick="toggleSound()">Вкл</button></div>
+<div class="settingrow"><span>📳 Вибрация</span><button id="vibroBtn" onclick="toggleVibro()">Вкл</button></div>
+<button class="big" onclick="closeSettings()">Готово</button></div></div>
+<div id="modal" class="modal"><div class="modalbox"><h2 id="mt">🎉 Уровень пройден!</h2><div id="mr" class="reward">+20 💎</div><div id="md">Отлично! Следующий уровень уже готов.</div><button class="big" onclick="nextLevel()">Продолжить</button><div class="adnote">Здесь позже можно показывать межуровневую рекламу Яндекс Игр</div></div></div><script>
+let ysdk=null;try{YaGames.init().then(y=>{ysdk=y;console.log("Yandex Games SDK ready")}).catch(()=>{})}catch(e){}
+const CAP=4;let level=+(localStorage.bcLevel||1),coins=+(localStorage.bcCoins||100),streak=+(localStorage.bcStreak||1),tubes=[],selected=null,history=[],locked=false;
+let soundOn=localStorage.bcSound!=='0',vibroOn=localStorage.bcVibro!=='0';
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296}}
+function shuffleSeed(a,r){for(let i=a.length-1;i;i--){let j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function stateKey(s){return s.map(t=>t.join('')).join('|')}
+function canSolve(start,limit=65000){
+ let seen=new Set(),nodes=0;
+ function dfs(s){
+  if(++nodes>limit)return false;
+  let key=stateKey(s); if(seen.has(key))return false; seen.add(key);
+  if(s.every(t=>!t.length||(t.length===CAP&&t.every(x=>x===t[0]))))return true;
+  for(let i=0;i<s.length;i++){let a=s[i];if(!a.length)continue;
+   if(a.length===CAP&&a.every(x=>x===a[0]))continue;
+   for(let j=0;j<s.length;j++){if(i===j)continue;let b=s[j];if(b.length>=CAP)continue;
+    let c=a[a.length-1];if(b.length&&b[b.length-1]!==c)continue;
+    if(!b.length){let same=a.every(x=>x===c);if(same)continue}
+    let n=s.map(x=>x.slice());n[j].push(n[i].pop());if(dfs(n))return true;
+   }
+  } return false;
+ } return dfs(start.map(x=>x.slice()));
+}
+function makeLevel(){
+ level=Math.max(1,Math.min(100,level));
+ let colors=Math.min(6,2+Math.floor((level-1)/5)),attempt=0,candidate=null;
+ while(attempt<30){
+  let r=rng(level*7919+attempt*104729),arr=[];
+  for(let c=0;c<colors;c++)for(let k=0;k<CAP;k++)arr.push(c);
+  shuffleSeed(arr,r);candidate=Array.from({length:colors+2},(_,i)=>i<colors?arr.slice(i*CAP,(i+1)*CAP):[]);
+  if(canSolve(candidate))break; attempt++;
+ }
+ tubes=candidate;selected=null;history=[];locked=false;render();showTutorial();
+}
+function render(){levelEl.textContent=level;coinsEl.textContent=coins;streakEl.textContent=streak;let done=tubes.filter(t=>t.length===CAP&&t.every(x=>x===t[0])).length;prog.style.width=Math.min(100,done/Math.max(1,tubes.length-2)*100)+'%';board.innerHTML='';tubes.forEach((t,i)=>{let d=document.createElement('div');d.className='bolt'+(selected===i?' sel':'');d.onclick=()=>tap(i);d.innerHTML='<div class="rod"></div><div class="base"></div><div class="stack"></div>';let s=d.querySelector('.stack');t.forEach(c=>{let n=document.createElement('div');n.className='nut c'+c;s.appendChild(n)});board.appendChild(d)});renderMap();save()}
+function flash(s){msg.textContent=s;setTimeout(()=>{if(msg.textContent===s)msg.textContent=''},1000)}
+function tap(i){if(locked)return;feedback();if(selected===null){if(tubes[i].length){selected=i;render()}return}if(selected===i){selected=null;render();return}let a=tubes[selected],b=tubes[i];if(!a.length||b.length>=CAP){selected=null;render();return}let c=a.at(-1);if(b.length&&b.at(-1)!==c){flash('Сверху должен быть такой же цвет');selected=null;render();return}history.push(JSON.stringify(tubes));b.push(a.pop());selected=null;render();check()}
+function solved(){return tubes.every(t=>!t.length||(t.length===CAP&&t.every(x=>x===t[0])))}
+function check(){if(solved()){locked=true;coins+=20;streak++;save();playWin();burst();setTimeout(()=>modal.classList.add('show'),350)}}
+function feedback(){if(vibroOn&&navigator.vibrate)navigator.vibrate(12);if(soundOn)tone(280,.035)}
+function tone(freq,dur){try{let A=window.AudioContext||window.webkitAudioContext,c=window._bcAudio||(window._bcAudio=new A()),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;g.gain.value=.035;o.connect(g);g.connect(c.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+dur);o.stop(c.currentTime+dur)}catch(e){}}
+function playWin(){if(soundOn){tone(523,.08);setTimeout(()=>tone(659,.08),90);setTimeout(()=>tone(784,.12),180)}if(vibroOn&&navigator.vibrate)navigator.vibrate([30,40,60])}
+function burst(){let c=document.getElementById('confetti');c.innerHTML='';for(let i=0;i<28;i++){let e=document.createElement('i');e.textContent=['◆','●','★'][i%3];e.style.left=(Math.random()*100)+'%';e.style.animationDelay=(Math.random()*.35)+'s';e.style.fontSize=(10+Math.random()*15)+'px';c.appendChild(e)}setTimeout(()=>c.innerHTML='',2100)}
+function showTutorial(){let t=document.getElementById('tutorial');if(level===1&&!localStorage.bcTutorial){t.style.display='block';t.innerHTML='👆 <b>Как играть:</b> нажми на болт с гайкой, затем на другой болт. Можно класть гайку только на такой же цвет или на пустой болт.'}else if(level===2&&!localStorage.bcTutorial){t.style.display='block';t.innerHTML='💡 Собери по 4 одинаковые гайки на каждом болте. Два пустых болта помогают переставлять цвета.'}else{t.style.display='none';if(level>2)localStorage.bcTutorial='1'}}
+function openSettings(){settings.classList.add('show');updateSettings()}
+function closeSettings(){settings.classList.remove('show')}
+function toggleSound(){soundOn=!soundOn;localStorage.bcSound=soundOn?'1':'0';updateSettings();if(soundOn)tone(440,.05)}
+function toggleVibro(){vibroOn=!vibroOn;localStorage.bcVibro=vibroOn?'1':'0';updateSettings();if(vibroOn&&navigator.vibrate)navigator.vibrate(25)}
+function updateSettings(){soundBtn.textContent=soundOn?'Вкл':'Выкл';vibroBtn.textContent=vibroOn?'Вкл':'Выкл'}
+function nextLevel(){modal.classList.remove('show');showInterstitial(()=>{if(level>=100){flash('🏆 Все 100 уровней пройдены!');level=100;makeLevel()}else{level++;makeLevel()}})}
+function undo(){if(locked||!history.length)return;tubes=JSON.parse(history.pop());selected=null;render()}
+function restart(){if(locked)return;makeLevel()}
+function hint(){if(locked)return;if(coins<10)return flash('Нужно 10 💎');for(let i=0;i<tubes.length;i++)if(tubes[i].length)for(let j=0;j<tubes.length;j++)if(i!==j&&tubes[j].length<CAP&&(!tubes[j].length||tubes[j].at(-1)===tubes[i].at(-1))){coins-=10;flash(`💡 Болт ${i+1} → ${j+1}`);render();return}}
+function rewardAd(){if(ysdk?.adv){ysdk.adv.showRewardedVideo({callbacks:{onRewarded:()=>{coins+=30;flash('🎁 +30 💎');render()},onError:()=>flash('Реклама пока недоступна')}})}else{coins+=30;flash('🎬 Тест рекламы: +30 💎');render()}}
+function showInterstitial(done){if(ysdk?.adv){ysdk.adv.showFullscreenAdv({callbacks:{onClose:()=>done(),onError:()=>done()}})}else done()}
+function renderMap(){let m=document.getElementById('levelmap');if(!m)return;m.innerHTML='';let start=Math.max(1,Math.min(91,Math.floor((level-1)/10)*10+1));for(let n=start;n<start+10;n++){let b=document.createElement('button');b.textContent=n;b.className=n===level?'now':n<level?'done':'';b.onclick=()=>{if(n<=level){level=n;makeLevel()}};m.appendChild(b)}}
+function daily(){let today=new Date().toDateString();if(localStorage.bcDaily===today)return flash('Награда уже получена');localStorage.bcDaily=today;coins+=50;flash('🎁 Ежедневная награда: +50 💎');render()}
+function save(){localStorage.bcLevel=level;localStorage.bcCoins=coins;localStorage.bcStreak=streak}
+const levelEl=document.getElementById('level'),coinsEl=document.getElementById('coins'),streakEl=document.getElementById('streak'),prog=document.getElementById('prog'),board=document.getElementById('board'),msg=document.getElementById('msg'),modal=document.getElementById('modal'),settings=document.getElementById('settings'),soundBtn=document.getElementById('soundBtn'),vibroBtn=document.getElementById('vibroBtn');updateSettings();makeLevel();
+</script></body></html>
